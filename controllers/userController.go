@@ -19,7 +19,7 @@ func CreateUserEndpoint(response http.ResponseWriter, request *http.Request, cli
 	response.Header().Set("content-type", "application/json")
 	var user models.User
 	_ = json.NewDecoder(request.Body).Decode(&user)
-	collection := client.Database("appointy").Collection("users")
+	collection := client.Database("appointy-tech-task").Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	result, err := collection.InsertOne(ctx, bson.D{
 		{Key: "name", Value: user.Name},
@@ -40,7 +40,7 @@ func GetUserEndpoint(response http.ResponseWriter, request *http.Request, client
 	idi := strings.TrimPrefix(request.URL.Path, "/users/")
 	id, _ := primitive.ObjectIDFromHex(idi)
 	var user models.User
-	collection := client.Database("appointy").Collection("users")
+	collection := client.Database("appointy-tech-task").Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	err := collection.FindOne(ctx, models.User{Id: id}).Decode(&user)
@@ -59,7 +59,7 @@ func GetUsersEndpoint(response http.ResponseWriter, request *http.Request, clien
 	}
 	response.Header().Set("content-type", "application/json")
 	var users []models.User
-	collection := client.Database("appointy").Collection("users")
+	collection := client.Database("appointy-tech-task").Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	cursor, err := collection.Find(ctx, bson.M{})

@@ -76,7 +76,7 @@ This API can potentially link the software and application to some defined stora
 ## Features
 Features  | Details
 ------------ | -------------
-Secure passwords |  Stored as hashes
+Secure passwords  |  Stored as md5 hashes 
 RFC 3339 time-stamp |  Event logging
 
 <br/>
@@ -102,3 +102,32 @@ Endpoint | Usage
 <!-- HOW TO USE -->
 ## How To Use
 
+- Make sure mongo is up and running on port 27017
+- Clone this repo locally
+- Open terminal  
+- run this command in the project directory <br/> ``` go run main.go ```  
+<br/>
+- Open Postman and follow the below screenshot thread
+
+<br/>
+
+<div>
+
+- Create user 1
+<img src="images/create-a-user.png" alt="pic" >
+- Create user 2
+<img src="images/create-a-user-2.png" alt="pic" >
+- Get a user
+<img src="images/get-a-user.png" alt="pic" >
+- Get all users
+<img src="images/get-all-users.png" alt="pic" >
+- Create post 1
+<img src="images/create-a-post.png" alt="pic" >
+- Create post 2
+<img src="images/create-a-post-2.png" alt="pic" >
+- Get all posts
+<img src="images/get-all-posts.png" alt="pic" >
+- Get all posts for a user
+<img src="images/get-all-posts-for-a-user.png" alt="pic" >
+
+</div>

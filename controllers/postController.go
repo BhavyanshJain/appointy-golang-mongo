@@ -18,7 +18,7 @@ func CreatePostEndpoint(response http.ResponseWriter, request *http.Request, cli
 	response.Header().Set("content-type", "application/json")
 	var post models.Post
 	_ = json.NewDecoder(request.Body).Decode(&post)
-	collection := client.Database("appointy").Collection("posts")
+	collection := client.Database("appointy-tech-task").Collection("posts")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	result, err := collection.InsertOne(ctx, bson.D{
 		{Key: "userId", Value: post.UserId},
@@ -44,7 +44,7 @@ func GetPostsEndpoint(response http.ResponseWriter, request *http.Request, clien
 	}
 	response.Header().Set("content-type", "application/json")
 	var posts []models.Post
-	collection := client.Database("appointy").Collection("posts")
+	collection := client.Database("appointy-tech-task").Collection("posts")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	cursor, err := collection.Find(ctx, bson.M{})
@@ -71,7 +71,7 @@ func GetPostsOfUserEndpoint(response http.ResponseWriter, request *http.Request,
 	response.Header().Set("content-type", "application/json")
 	id := strings.TrimPrefix(request.URL.Path, "/posts/users/")
 	var posts []models.Post
-	collection := client.Database("appointy").Collection("posts")
+	collection := client.Database("appointy-tech-task").Collection("posts")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	filter := bson.D{{Key: "userId", Value: id}}
